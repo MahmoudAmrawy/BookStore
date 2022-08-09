@@ -1,0 +1,64 @@
+﻿@model IEnumerable<BookStore.Models.Book>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <h1>Index</h1>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table table-border table-striped table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdBook)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Auther.NameAuther)
+                </th>
+                <th>
+                   Image
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdBook)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Auther.NameAuther)
+                </td>
+                <td>
+                    @if (item.ImgUrl != null)
+                    {
+                      <img src="~/Uploads/@item.ImgUrl" style="width:60px;" class="img-thumbnail" />
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.IdBook }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.IdBook }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.IdBook })
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+</div>
